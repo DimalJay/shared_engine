@@ -25,15 +25,37 @@ start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
-const like = 'sample';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_engine/shared_engine.dart';
+
+class UserModel extends TxModel {
+  static String collectioName = "users";
+
+  final String name;
+  UserModel({required super.id, required this.name}) : super(collectioName);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      "name": name,
+    };
+  }
+
+  factory UserModel.fromDoc(DocumentSnapshot doc) {
+    return UserModel(id: doc.id, name: doc['name'].toString());
+  }
+
+  static DatabaseService<UserModel> get service => DatabaseService<UserModel>(
+      collection: UserModel.collectioName, fromDoc: UserModel.fromDoc);
+}
+
+
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+### Use
+
+```dart
+await UserModel.service.addDocument(UserModel(id: '', name: 'Dimal'));
+```
