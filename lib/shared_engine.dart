@@ -5,5 +5,6 @@ library;
 
 export 'src/models/model_abstract.dart';
 export 'src/services/database_service.dart';
+export 'src/services/auth_service.dart';
 
 // TODO: Export any libraries intended for clients of this package.

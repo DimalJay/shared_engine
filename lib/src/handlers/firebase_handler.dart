@@ -17,10 +17,7 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
   @override
   Future<void> addDocument(String collection, Map<String, dynamic> data) async {
     try {
-      log("message");
-      await _firestore.collection(collection).add(data).then((e) {
-        print(e.get());
-      });
+      await _firestore.collection(collection).add(data);
 
       log("Document Added");
     } catch (e) {
@@ -68,6 +65,7 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
   Future<void> deleteDocument(String collection, String id) async {
     try {
       await _firestore.collection(collection).doc(id).delete();
+      log("Document Deleted");
     } catch (e) {
       log("Error deleting document: $e");
       rethrow;
