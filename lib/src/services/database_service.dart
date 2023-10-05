@@ -32,9 +32,24 @@ class DatabaseService<T extends TxModel> {
     await _databaseHandler.addDocument(collection, model.toJson());
   }
 
+  // add Document
+  Future<void> addDocumentWithId(T model) async {
+    log("HI");
+    await _databaseHandler.addDocumentWithId(
+      collection,
+      model.id,
+      model.toJson(),
+    );
+  }
+
   // Update Documents
   Future<void> updateDocument(T model) async {
     await _databaseHandler.updateDocument(collection, model.id, model.toJson());
+  }
+
+  // Exists Document
+  Future<bool> existsDocument(String id) async {
+    return _databaseHandler.isDocExists(collection, id);
   }
 
   //Delete Documents

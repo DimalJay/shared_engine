@@ -4,8 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 abstract class DatabaseHandler<Snapshot> {
   Future<Snapshot> getDocumentById(String collection, String id);
   Future<void> addDocument(String collection, Map<String, dynamic> data);
+  Future<void> addDocumentWithId(
+      String collection, String id, Map<String, dynamic> data);
   Future<void> updateDocument(
       String collection, String id, Map<String, dynamic> data);
+  Future<bool> isDocExists(String collection, String id);
   Future<void> deleteDocument(String collection, String id);
   Future<QuerySnapshot> getDocuments(String collection, {Query? query});
 }
@@ -18,6 +21,20 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
   Future<void> addDocument(String collection, Map<String, dynamic> data) async {
     try {
       await _firestore.collection(collection).add(data);
+
+      log("Document Added");
+    } catch (e) {
+      log("Error adding document: $e");
+      rethrow;
+    }
+  }
+
+  // Add a new document to a Firestore collection
+  @override
+  Future<void> addDocumentWithId(
+      String collection, String id, Map<String, dynamic> data) async {
+    try {
+      await _firestore.collection(collection).doc(id).set(data);
 
       log("Document Added");
     } catch (e) {
@@ -68,6 +85,20 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
       log("Document Deleted");
     } catch (e) {
       log("Error deleting document: $e");
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> isDocExists(String collection, String id) {
+    try {
+      return _firestore
+          .collection(collection)
+          .doc(id)
+          .get()
+          .then((value) => value.exists);
+    } catch (e) {
+      log("Error fetching document");
       rethrow;
     }
   }
