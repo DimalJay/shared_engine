@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../handlers/firebase_handler.dart';
+import '../handlers/abstract_handler.dart';
+import '../handlers/firestore_handler.dart';
 import '../models/model_abstract.dart';
 
 class DatabaseService<T extends TxModel> {
