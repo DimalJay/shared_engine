@@ -22,8 +22,9 @@ class DatabaseService<T extends TxModel> {
   }
 
   // Get Documents
-  Future<List<T>> getDocuments() async {
-    final documents = (await _databaseHandler.getDocuments(collection)).docs;
+  Future<List<T>> getDocuments({Query? query}) async {
+    final documents =
+        (await _databaseHandler.getDocuments(collection, query: query)).docs;
     return documents.map<T>((snapshot) => fromDoc(snapshot)).toList();
   }
 
