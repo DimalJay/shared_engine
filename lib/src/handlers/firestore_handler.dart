@@ -55,6 +55,17 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
     }
   }
 
+  // Retrieve a document stream from a Firestore collection by its ID
+  @override
+  Stream<DocumentSnapshot> getDocumentByIdStream(String collection, String id) {
+    try {
+      return _firestore.collection(collection).doc(id).snapshots();
+    } catch (e) {
+      log("Error getting document: $e");
+      rethrow;
+    }
+  }
+
   // Query documents in a Firestore collection based on specific conditions
   @override
   Future<QuerySnapshot> getDocuments(String collection, {Query? query}) async {

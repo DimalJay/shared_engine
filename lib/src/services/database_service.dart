@@ -21,6 +21,12 @@ class DatabaseService<T extends TxModel> {
     return fromDoc(snapshot);
   }
 
+  // get Document Stream
+  Stream<T> getDocumentStream(String id) {
+    final snapshot = databaseHandler.getDocumentByIdStream(collection, id);
+    return snapshot.map((event) => fromDoc(event));
+  }
+
   // Get Documents
   Future<List<T>> getDocuments({Query? query}) async {
     final documents =
