@@ -24,7 +24,9 @@ class DatabaseService<T extends TxModel> {
   // get Document Stream
   Stream<T> getDocumentStream(String id) {
     final snapshot = databaseHandler.getDocumentByIdStream(collection, id);
-    return snapshot.map((event) => fromDoc(event));
+    return snapshot
+        .where((event) => event.data() != null)
+        .map((event) => fromDoc(event));
   }
 
   // Get Documents
