@@ -17,6 +17,10 @@ class AuthService {
     });
   }
 
+  void updateStream(User user) {
+    _userController.add(user);
+  }
+
   Future<User?> googleSignIn() async {
     return await authHandler.signInWithGoogle();
   }
