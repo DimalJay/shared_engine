@@ -17,7 +17,7 @@ know whether this package might be useful for them.
 ```yaml
 shared_engine:
   git: 
-    url: https://github.com/DimalJay/shared_engin
+    url: https://github.com/DimalJay/shared_engine
 ```
 
 ## Features
