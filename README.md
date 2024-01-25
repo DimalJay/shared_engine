@@ -13,6 +13,12 @@ and the Flutter guide for
 
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
+## Install
+```yaml
+shared_engine:
+  git: 
+    url: https://github.com/DimalJay/shared_engin
+```
 
 ## Features
 
