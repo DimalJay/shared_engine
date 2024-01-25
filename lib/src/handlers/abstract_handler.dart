@@ -11,4 +11,5 @@ abstract class DatabaseHandler<Snapshot> {
   Future<bool> isDocExists(String collection, String id);
   Future<void> deleteDocument(String collection, String id);
   Future<QuerySnapshot> getDocuments(String collection, {Query? query});
+  Stream<QuerySnapshot> getDocumentsStream(String collection, {Query? query});
 }

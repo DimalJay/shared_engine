@@ -36,6 +36,14 @@ class DatabaseService<T extends TxModel> {
     return documents.map<T>((snapshot) => fromDoc(snapshot)).toList();
   }
 
+  // Get Documents Stream
+  Stream<List<T>> getDocumentsStream({Query? query}) {
+    final snapshots =
+        (databaseHandler.getDocumentsStream(collection, query: query));
+    return snapshots
+        .map((event) => event.docs.map<T>((e) => fromDoc(e)).toList());
+  }
+
   // add Document
   Future<void> addDocument(T model) async {
     log("HI");

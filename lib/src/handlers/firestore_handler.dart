@@ -77,6 +77,17 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
     }
   }
 
+  // Query documents in a Firestore collection based on specific conditions
+  @override
+  Stream<QuerySnapshot> getDocumentsStream(String collection, {Query? query}) {
+    try {
+      return (query ?? _firestore.collection(collection)).snapshots();
+    } catch (e) {
+      log("Error querying documents: $e");
+      rethrow;
+    }
+  }
+
   // Delete a document from a Firestore collection by its ID
   @override
   Future<void> deleteDocument(String collection, String id) async {
