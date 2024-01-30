@@ -25,6 +25,14 @@ class AuthService {
     return await authHandler.signInWithGoogle();
   }
 
+  Future<User?> signInWithEmailAndPassword(
+      {required String email, required String password}) async {
+    return await authHandler.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
   Future<User?> currentUser() async {
     return await authHandler.getCurrentUser();
   }
