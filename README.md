@@ -53,7 +53,7 @@ class UserModel extends TxModel {
   }
 
   static DatabaseService<UserModel> get service => DatabaseService<UserModel>(
-      collection: UserModel.collectioName, fromDoc: UserModel.fromDoc);
+      collection: UserModel.collection, fromDoc: UserModel.fromDoc);
 }
 
 

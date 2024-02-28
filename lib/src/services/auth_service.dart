@@ -37,7 +37,7 @@ class AuthService {
     return await authHandler.getCurrentUser();
   }
 
-  void googleSignOut() async {
+  void signOut() async {
     await authHandler.signOut();
   }
 

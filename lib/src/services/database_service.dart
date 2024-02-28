@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../handlers/abstract_handler.dart';
 import '../handlers/firestore_handler.dart';
@@ -46,13 +44,11 @@ class DatabaseService<T extends TxModel> {
 
   // add Document
   Future<void> addDocument(T model) async {
-    log("HI");
     await databaseHandler.addDocument(collection, model.toJson());
   }
 
   // add Document
   Future<void> addDocumentWithId(T model) async {
-    log("HI");
     await databaseHandler.addDocumentWithId(
       collection,
       model.id,
