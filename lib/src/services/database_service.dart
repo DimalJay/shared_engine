@@ -13,6 +13,9 @@ class DatabaseService<T extends TxModel> {
     required this.fromDoc,
   });
 
+  void useEmulator({required String host, required int port}) =>
+      databaseHandler.useEmulator(host: host, port: port);
+
   // get Document
   Future<T> getDocument(String id) async {
     final snapshot = await databaseHandler.getDocumentById(collection, id);

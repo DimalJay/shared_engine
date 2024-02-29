@@ -10,6 +10,9 @@ class AuthService {
 
   Stream<User?> get authStateChanges => _userController.stream;
 
+  void useEmulator({required String host, required int port}) =>
+      _auth.useAuthEmulator(host, port);
+
   AuthService() {
     _auth.authStateChanges().listen((User? user) {
       // Emit the current user to the stream

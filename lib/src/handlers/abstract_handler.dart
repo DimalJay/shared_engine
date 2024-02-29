@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class DatabaseHandler<Snapshot> {
+  void useEmulator({required String host, required int port});
+
   Future<Snapshot> getDocumentById(String collection, String id);
   Stream<Snapshot> getDocumentByIdStream(String collection, String id);
   Future<void> addDocument(String collection, Map<String, dynamic> data);

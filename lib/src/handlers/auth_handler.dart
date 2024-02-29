@@ -5,6 +5,9 @@ class AuthHandler {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  Future<void> useEmulator({required String host, required int port}) =>
+      _auth.useAuthEmulator(host, port);
+
   Future<User?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();

@@ -5,6 +5,8 @@ import 'abstract_handler.dart';
 class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  useEmulator({required String host, required int port}) =>
+      _firestore.useFirestoreEmulator(host, port);
   // Add a new document to a Firestore collection
   @override
   Future<void> addDocument(String collection, Map<String, dynamic> data) async {
