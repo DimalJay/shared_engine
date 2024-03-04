@@ -85,7 +85,7 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
       {Query? query, int? limit}) {
     try {
       final ref = (query ?? _firestore.collection(collection));
-      return limit == null ? ref.limit(limit!).snapshots() : ref.snapshots();
+      return limit != null ? ref.limit(limit).snapshots() : ref.snapshots();
     } catch (e) {
       log("Error querying documents: $e");
       rethrow;
