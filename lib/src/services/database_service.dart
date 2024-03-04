@@ -38,9 +38,9 @@ class DatabaseService<T extends TxModel> {
   }
 
   // Get Documents Stream
-  Stream<List<T>> getDocumentsStream({Query? query}) {
-    final snapshots =
-        (databaseHandler.getDocumentsStream(collection, query: query));
+  Stream<List<T>> getDocumentsStream({Query? query, int? limit}) {
+    final snapshots = (databaseHandler.getDocumentsStream(collection,
+        query: query, limit: limit));
     return snapshots
         .map((event) => event.docs.map<T>((e) => fromDoc(e)).toList());
   }

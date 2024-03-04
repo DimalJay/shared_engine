@@ -81,9 +81,11 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
 
   // Query documents in a Firestore collection based on specific conditions
   @override
-  Stream<QuerySnapshot> getDocumentsStream(String collection, {Query? query}) {
+  Stream<QuerySnapshot> getDocumentsStream(String collection,
+      {Query? query, int? limit}) {
     try {
-      return (query ?? _firestore.collection(collection)).snapshots();
+      final ref = (query ?? _firestore.collection(collection));
+      return limit == null ? ref.limit(limit!).snapshots() : ref.snapshots();
     } catch (e) {
       log("Error querying documents: $e");
       rethrow;
