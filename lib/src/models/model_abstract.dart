@@ -3,20 +3,14 @@ abstract class TxModel {
   final String collectionName;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final String? actionBy;
 
-  TxModel(
-    this.collectionName, {
-    required this.id,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-    this.actionBy,
-  })  : createdAt = createdAt ?? DateTime.now(),
+  TxModel(this.collectionName,
+      {required this.id, DateTime? createdAt, DateTime? updatedAt})
+      : createdAt = createdAt ?? DateTime.now(),
         updatedAt = updatedAt ?? DateTime.now();
 
   Map<String, dynamic> toJson() => {
         'createdAt': createdAt.toIso8601String(),
         'updatedAt': updatedAt.toIso8601String(),
-        '_actionBy': actionBy,
       };
 }
