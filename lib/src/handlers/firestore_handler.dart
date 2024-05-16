@@ -5,15 +5,15 @@ import 'abstract_handler.dart';
 class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  @override
   useEmulator({required String host, required int port}) =>
       _firestore.useFirestoreEmulator(host, port);
   // Add a new document to a Firestore collection
   @override
-  Future<void> addDocument(String collection, Map<String, dynamic> data) async {
+  Future<DocumentReference> addDocument(
+      String collection, Map<String, dynamic> data) async {
     try {
-      await _firestore.collection(collection).add(data);
-
-      log("Document Added");
+      return await _firestore.collection(collection).add(data);
     } catch (e) {
       log("Error adding document: $e");
       rethrow;
@@ -26,7 +26,6 @@ class FirestoreHandler extends DatabaseHandler<DocumentSnapshot> {
       String collection, String id, Map<String, dynamic> data) async {
     try {
       await _firestore.collection(collection).doc(id).set(data);
-
       log("Document Added");
     } catch (e) {
       log("Error adding document: $e");

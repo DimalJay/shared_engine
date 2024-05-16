@@ -46,8 +46,8 @@ class DatabaseService<T extends TxModel> {
   }
 
   // add Document
-  Future<void> addDocument(T model) async {
-    await databaseHandler.addDocument(collection, model.toJson());
+  Future<DocumentReference> addDocument(T model) async {
+    return await databaseHandler.addDocument(collection, model.toJson());
   }
 
   // add Document

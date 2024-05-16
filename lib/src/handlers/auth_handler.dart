@@ -43,6 +43,17 @@ class AuthHandler {
     }
   }
 
+  Future<User?> createUserWithEmailAndPassword(
+      {required String email, required String password}) async {
+    try {
+      UserCredential authResult = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      return authResult.user;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   Future<User?> getCurrentUser() async {
     try {
       return _auth.currentUser;

@@ -36,6 +36,14 @@ class AuthService {
     );
   }
 
+  Future<User?> createUserWithEmailAndPassword(
+      {required String email, required String password}) async {
+    return await authHandler.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
   Future<User?> currentUser() async {
     return await authHandler.getCurrentUser();
   }
